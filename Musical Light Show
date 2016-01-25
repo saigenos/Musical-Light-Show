@@ -1,17 +1,23 @@
 /*Light Show
   Teresa Le
   When the button is pressed, the LEDs light up one by one, and
-  turn off one by one when the button is let go.*/
+  turn off one by one when the button is let go. As they light 
+  and turn off, a string of musical notes play as well.*/
+  
 #include "pitches.h"
 
 // Define variables & create LED array
 int ledPins[] = {1,2,3,4,5,6,7};
 const int buttonPin = 13;
 
-// Notes in the melody
+// Define melody array & its durations
 int melody[] = {
   NOTE_C1, NOTE_C2, NOTE_C3, NOTE_C4, NOTE_C5, NOTE_C6, NOTE_C7
-}
+};
+ int noteDurations[] = {
+    4, 4, 4, 4, 4, 4, 4
+  };
+  }
 
 void setup() {
   
@@ -22,6 +28,21 @@ void setup() {
   
   // Define button
   pinMode(buttonPin, INPUT);
+
+  // Interate notes of the melody
+  for (int thisNote = 0; thisNote < 8; thisNote) {
+
+    // Define how long to play the note
+    int noteDuration = 1000 / noteDurations[thisNote];
+    tone(8, melody[thisNote, noteDuration);
+    
+    // Define breaks between each note
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+
+    // Stop melody
+    noTone(8);
+    }
 }
 
 void loop() {
@@ -30,10 +51,6 @@ void loop() {
   int buttonState;
   buttonState = digitalRead(buttonPin);
 
-  int noteDurations[] = {
-    4, 4, 4, 4, 4, 4, 4
-  };
-  }
 
 // Light LEDs when button is pressed
   if (buttonState == HIGH)
