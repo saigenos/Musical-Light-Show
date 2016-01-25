@@ -1,0 +1,53 @@
+/*Light Show
+  Teresa Le
+  When the button is pressed, the LEDs light up one by one, and
+  turn off one by one when the button is let go.*/
+#include "pitches.h"
+
+// Define variables & create LED array
+int ledPins[] = {1,2,3,4,5,6,7};
+const int buttonPin = 13;
+
+// Notes in the melody
+int melody[] = {
+  NOTE_C1, NOTE_C2, NOTE_C3, NOTE_C4, NOTE_C5, NOTE_C6, NOTE_C7
+}
+
+void setup() {
+  
+  // Define LEDs to light in order
+  for (int i=0; i<8; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+  
+  // Define button
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  
+  // Define buttonState and read the button's state
+  int buttonState;
+  buttonState = digitalRead(buttonPin);
+
+  int noteDurations[] = {
+    4, 4, 4, 4, 4, 4, 4
+  };
+  }
+
+// Light LEDs when button is pressed
+  if (buttonState == HIGH)
+  {
+  for (int i=0; i<8; i++) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(500);
+  }
+  
+// Light all LEDs off in order one by one
+  }  else {
+  for (int i=0; i<8; i++) {
+    digitalWrite(ledPins[i], LOW);
+    delay(500);
+  }
+  }
+}
